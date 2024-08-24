@@ -1,1 +1,6 @@
+if [ ! "${ENABLE_COMMITLINT:-1}" -eq 1 ]; then
+  # echo '$ENABLE_COMMITLINT is false'
+  exit 0
+fi
+
 pnpm commitlint --edit $1

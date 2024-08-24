@@ -1,1 +1,6 @@
+if [ "${ENABLE_COMMITIZEN:-0}" -eq 0 ]; then
+  # echo '$ENABLE_COMMITIZEN is false'
+  exit 0
+fi
+
 exec < /dev/tty && pnpm cz --hook || true
