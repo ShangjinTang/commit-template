@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+permissions:
+  contents: read # for checkout
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
